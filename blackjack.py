@@ -172,23 +172,23 @@ while True:
     # Prompt the Player for their bet
     chip_stack.bet = take_bet(chip_stack.total)
     
-    # Show cards (but keep one dealer card hidden)
+    # Show cards with one dealer card hidden
     show_some(player_hand,dealer_hand)
     
-    while playing:  # recall this variable from our hit_or_stand function
+    while playing: 
         
         # Prompt for Player to Hit or Stand
         hit_or_stand(new_deck, player_hand)
 
-        # Show cards (but keep one dealer card hidden)
+        # Show updated cards
         show_some(player_hand, dealer_hand)
 
-        # If player's hand exceeds 21, run player_busts() and break out of loop
+        # If player's hand exceeds 21 then player is bust
         if player_hand.value > 21:
             player_busts()
             break
     
-    # If Player hasn't busted, play Dealer's hand until Dealer reaches 17
+    # If Player hasn't busted, play Dealer's hand
     if player_hand.value <= 21:
         while dealer_hand.value < 17:
             hit(new_deck, dealer_hand)
@@ -196,7 +196,7 @@ while True:
         # Show all cards
         show_all(player_hand, dealer_hand)
     
-        # Run different winning scenarios
+        # Check for different winning scenarios
         if dealer_hand.value > 21:
             dealer_busts()
         elif player_hand.value > dealer_hand.value:
